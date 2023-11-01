@@ -160,7 +160,7 @@ public class TaskClass {
         return animals.stream()
             .collect(Collectors.toMap(
                 Animal::name,
-                animal -> validateAnimal(animal),
+                TaskClass::validateAnimal,
                 (existingError, newError) -> {
                     existingError.addAll(newError);
                     return existingError;
@@ -173,10 +173,10 @@ public class TaskClass {
 
     public static Map<String, String> task20(List<Animal> animals) {
         return animals.stream()
-            .filter(animal -> hasErrors(animal))
+            .filter(TaskClass::hasErrors)
             .collect(Collectors.toMap(
                 Animal::name,
-                animal -> getErrorString(animal)
+                TaskClass::getErrorString
             ));
     }
 

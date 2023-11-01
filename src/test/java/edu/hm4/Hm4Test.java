@@ -109,7 +109,8 @@ public class Hm4Test {
         );
 
         Optional<Animal> result = TaskClass.task8(animals, 6);
-        assertEquals("Cat", result);
+        assertTrue(result.isPresent());
+        assertEquals("Cat", result.get().name());
     }
 
     @Test

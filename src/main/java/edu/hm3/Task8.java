@@ -2,6 +2,7 @@ package edu.hm3;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Task8<T> implements Iterator<T> {
     private List<T> collection;
@@ -24,7 +25,7 @@ public class Task8<T> implements Iterator<T> {
             currentIndex--;
             return element;
         } else {
-            return null;
+            throw new NoSuchElementException();
         }
     }
 }

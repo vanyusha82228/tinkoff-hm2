@@ -1,5 +1,7 @@
 package edu.hm3;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class Task4 {
@@ -27,7 +29,7 @@ public class Task4 {
         if (remainingNumber <= 0 || remainingNumber > MAX_VALUE_FOR_ROMAN) {
             return "";
         }
-        TreeMap<Integer, String> map = new TreeMap<>();
+        Map<Integer, String> map = new LinkedHashMap<>();
         map.put(M, "M");
         map.put(CM, "CM");
         map.put(D, "D");
@@ -43,10 +45,10 @@ public class Task4 {
         map.put(I, "I");
 
         StringBuilder romanNumber = new StringBuilder();
-        for (int key : map.descendingKeySet()) {
-            while (remainingNumber >= key) {
-                romanNumber.append(map.get(key));
-                remainingNumber -= key;
+        for (Map.Entry<Integer,String> entry: map.entrySet()) {
+            while (remainingNumber >= entry.getKey()) {
+                romanNumber.append(entry.getValue());
+                remainingNumber -= entry.getKey();
             }
         }
         return romanNumber.toString();

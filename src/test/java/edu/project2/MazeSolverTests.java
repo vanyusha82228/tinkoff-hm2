@@ -14,23 +14,24 @@ import java.util.List;
 public class MazeSolverTests {
 
     private Generator generator;
-    private Solver solver;
-    private Renderer renderer;
 
     @BeforeEach
     public void setUp() {
         generator = new RecursiveBacktrackerGenerator();
-        solver = new BreadthFirstSolver();
-        renderer = new ConsoleRenderer();
     }
 
     @Test
-    public void testMazeSolverFindsPath() {
-        Maze maze = generator.generate(10, 10);
-        Coordinate start = new Coordinate(1, 1);
-        Coordinate end = new Coordinate(8, 8);
-        List<Coordinate> path = solver.solve(maze, start, end);
-        assertFalse(path.isEmpty(), "Solver should find a path.");
+    public void testMazeGeneratorAndSolver() {
+        Generator generator = new RecursiveBacktrackerGenerator();
+        Solver solver = new DepthFirstSolver(); // или другой ваш солвер
+        Coordinate start = new Coordinate(0, 0);
+        Coordinate end = new Coordinate(9, 9);
+
+        for (int i = 0; i < 100; i++) {
+            Maze maze = generator.generate(10, 10);
+            List<Coordinate> path = solver.solve(maze, start, end);
+            assertFalse(path.isEmpty(), "Solver should find a path.");
+        }
     }
 
 

@@ -1,7 +1,6 @@
 package edu.hm4;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -139,28 +138,13 @@ public class TaskClass {
             .orElse(null);
     }
 
-    private static Set<ValidationError> validateAnimal(Animal animal) {
-        Set<ValidationError> errors = new HashSet<>();
-        if (animal.name().isEmpty()) {
-            errors.add(ValidationError.NAME_EMPTY);
-        }
-        if (animal.age() < 0) {
-            errors.add(ValidationError.AGE_NEGATIVE);
-        }
-        if (animal.height() < 0) {
-            errors.add(ValidationError.HEIGHT_NEGATIVE);
-        }
-        if (animal.weight() < 0) {
-            errors.add(ValidationError.WEIGHT_NEGATIVE);
-        }
-        return errors;
-    }
+
 
     public static Map<String, Set<ValidationError>> task19(List<Animal> animals) {
         return animals.stream()
             .collect(Collectors.toMap(
                 Animal::name,
-                TaskClass::validateAnimal,
+                AnimalValidator::validateAnimal,
                 (existingError, newError) -> {
                     existingError.addAll(newError);
                     return existingError;
@@ -173,35 +157,12 @@ public class TaskClass {
 
     public static Map<String, String> task20(List<Animal> animals) {
         return animals.stream()
-            .filter(TaskClass::hasErrors)
+            .filter(ErrorString::hasErrors)
             .collect(Collectors.toMap(
                 Animal::name,
-                TaskClass::getErrorString
+                ErrorString::getErrorString
             ));
     }
 
-    private static boolean hasErrors(Animal animal) {
-        // Проверка наличия ошибок в данных животного
-        return animal.age() < 0 || animal.height() < 0 || animal.weight() < 0;
-    }
-
-    private static String getErrorString(Animal animal) {
-        // Создание строки с перечислением ошибок
-        StringBuilder errorBuilder = new StringBuilder();
-        if (animal.age() < 0) {
-            errorBuilder.append("Age is negative, ");
-        }
-        if (animal.height() < 0) {
-            errorBuilder.append("Height is negative, ");
-        }
-        if (animal.weight() < 0) {
-            errorBuilder.append("Weight is negative, ");
-        }
-        // Удалите последнюю запятую и пробел, если они есть
-        if (errorBuilder.length() > 0) {
-            errorBuilder.delete(errorBuilder.length() - 2, errorBuilder.length());
-        }
-        return errorBuilder.toString();
-    }
 
 }

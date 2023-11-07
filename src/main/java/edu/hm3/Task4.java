@@ -2,7 +2,7 @@ package edu.hm3;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
+
 
 public class Task4 {
     private Task4() {
@@ -45,7 +45,7 @@ public class Task4 {
         map.put(I, "I");
 
         StringBuilder romanNumber = new StringBuilder();
-        for (Map.Entry<Integer,String> entry: map.entrySet()) {
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
             while (remainingNumber >= entry.getKey()) {
                 romanNumber.append(entry.getValue());
                 remainingNumber -= entry.getKey();

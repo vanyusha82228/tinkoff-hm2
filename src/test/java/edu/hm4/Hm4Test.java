@@ -108,9 +108,9 @@ public class Hm4Test {
             new Animal("Cat2", Animal.Type.CAT, Animal.Sex.M, 2, 10, 7, false)
         );
 
-        Optional<Animal> result = TaskClass.task8(animals, 6);
+        Optional<Animal> result = TaskClass.task8(animals, 9);
         assertTrue(result.isPresent());
-        assertEquals("Cat", result.get().name());
+        assertEquals("Dog", result.get().name());
     }
 
     @Test

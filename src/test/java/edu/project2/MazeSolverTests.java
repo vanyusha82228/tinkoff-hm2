@@ -33,53 +33,6 @@ public class MazeSolverTests {
         assertFalse(path.isEmpty(), "Solver should find a path.");
     }
 
-//    @Test
-//    public void testMazeSolverNoPath() {
-//        Maze maze = generator.generate(10, 10);
-//        Coordinate start = new Coordinate(1, 1);
-//        Coordinate end = new Coordinate(8, 8);
-//        List<Coordinate> path = solver.solve(maze, start, end);
-//        assertTrue(path.isEmpty(), "Solver should not find a path.");
-//    }
-//
-//    @Test
-//    public void testRenderMaze() {
-//        Maze maze = generator.generate(10, 10);
-//        String expected = """
-//            █ █ █ █ █ █ █ █ █ █
-//            █       █       █ █
-//            █ █ █ █ █ █ █   █ █
-//            █   █       █ █ █ █
-//            █ █ █ █ █ █   █   █
-//            █   █   █ █ █ █ █ █
-//            █ █ █ █ █ █ █   █ █
-//            █       █       █ █
-//            █ █ █ █ █ █ █ █ █ █
-//            """;
-//        String renderedMaze = renderer.render(maze);
-//        assertEquals(expected.trim(), renderedMaze.trim(), "Rendered maze should match the expected output.");
-//    }
-//
-//    @Test
-//    public void testRenderPath() {
-//        Maze maze = generator.generate(10, 10);
-//        Coordinate start = new Coordinate(1, 1);
-//        Coordinate end = new Coordinate(8, 8);
-//        List<Coordinate> path = solver.solve(maze, start, end);
-//        String expected = """
-//            █ █ █ █ █ █ █ █ █ █
-//            █ X X X X X X X X █
-//            █ █ █ █ █ █ █   X █
-//            █   X X X X   X X █
-//            █ █ █ █ █ █ █   X █
-//            █   X   X X X X X █
-//            █ █ X X X X X X X █
-//            █       █       X █
-//            █ █ █ █ █ █ █ █ █ █
-//            """;
-//        String renderedMaze = renderer.render(maze, path);
-//        assertEquals(expected.trim(), renderedMaze.trim(), "Rendered maze with path should match the expected output.");
-//    }
 
     @Test
     public void testInvalidMazeSize() {

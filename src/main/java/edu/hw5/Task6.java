@@ -6,7 +6,7 @@ public class Task6 {
     private Task6() {
     }
 
-    public static boolean isSubstring(String inputSubstring, String inputString){
+    public static boolean isSubstring(String inputSubstring, String inputString) {
         return Pattern.compile(Pattern.quote(inputSubstring)).matcher(inputString).find();
     }
 }

@@ -1,9 +1,8 @@
-package edu.project2;
+package edu.project2.solver;
 
-import edu.project2.inteface.Cell;
-import edu.project2.inteface.Coordinate;
-import edu.project2.inteface.Maze;
-import edu.project2.inteface.Solver;
+import edu.project2.render.Cell;
+import edu.project2.render.Coordinate;
+import edu.project2.render.Maze;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;

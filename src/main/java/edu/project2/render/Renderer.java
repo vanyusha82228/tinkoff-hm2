@@ -1,4 +1,4 @@
-package edu.project2.inteface;
+package edu.project2.render;
 
 import java.util.List;
 

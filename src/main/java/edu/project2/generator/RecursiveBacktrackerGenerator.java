@@ -1,8 +1,7 @@
-package edu.project2;
+package edu.project2.generator;
 
-import edu.project2.inteface.Cell;
-import edu.project2.inteface.Generator;
-import edu.project2.inteface.Maze;
+import edu.project2.render.Cell;
+import edu.project2.render.Maze;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

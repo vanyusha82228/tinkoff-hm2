@@ -1,10 +1,13 @@
 package edu.project2;
 
-//import edu.project2.inteface.Coordinate;
-//import edu.project2.inteface.Generator;
-//import edu.project2.inteface.Maze;
-//import edu.project2.inteface.Renderer;
-//import edu.project2.inteface.Solver;
+//import edu.project2.generator.RecursiveBacktrackerGenerator;
+//import edu.project2.render.ConsoleRenderer;
+//import edu.project2.render.Coordinate;
+//import edu.project2.generator.Generator;
+//import edu.project2.render.Maze;
+//import edu.project2.render.Renderer;
+//import edu.project2.solver.DepthFirstSolver;
+//import edu.project2.solver.Solver;
 //import java.util.List;
 
 public class Main {

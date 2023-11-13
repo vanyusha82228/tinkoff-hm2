@@ -1,4 +1,4 @@
-package edu.project2.inteface;
+package edu.project2.render;
 
 public final class Maze {
     private final int height;

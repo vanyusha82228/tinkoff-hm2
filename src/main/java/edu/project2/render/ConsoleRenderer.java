@@ -1,9 +1,5 @@
-package edu.project2;
+package edu.project2.render;
 
-import edu.project2.inteface.Cell;
-import edu.project2.inteface.Coordinate;
-import edu.project2.inteface.Maze;
-import edu.project2.inteface.Renderer;
 import java.util.List;
 
 public class ConsoleRenderer implements Renderer {

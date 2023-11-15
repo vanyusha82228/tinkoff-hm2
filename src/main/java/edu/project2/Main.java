@@ -17,15 +17,15 @@ public class Main {
     public static void main(String[] args) {
 
 //        Generator generator = new RecursiveBacktrackerGenerator();
-//        Maze maze = generator.generate(10, 20);
+//        Maze maze = generator.generate(10, 30);
 //
 //
 //        Renderer renderer = new ConsoleRenderer();
 //
 //
 //        Solver solver = new DepthFirstSolver();
-//        Coordinate start = new Coordinate(1, 5);
-//        Coordinate end = new Coordinate(6, 8);
+//        Coordinate start = new Coordinate(2, 3);
+//        Coordinate end = new Coordinate(6, 15);
 //        List<Coordinate> path = solver.solve(maze, start, end);
 //
 //
@@ -33,6 +33,6 @@ public class Main {
 //        System.out.println(renderer.render(maze));
 //        System.out.println("Решение:");
 //        System.out.println(renderer.render(maze, path));
-
-    }
+//
+   }
 }

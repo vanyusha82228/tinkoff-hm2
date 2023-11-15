@@ -4,6 +4,7 @@ import edu.project2.render.Cell;
 import edu.project2.render.Coordinate;
 import edu.project2.render.Maze;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -13,9 +14,15 @@ public class DepthFirstSolver implements Solver {
         List<Coordinate> path = new ArrayList<>();
         boolean[][] visited = new boolean[maze.getHeight()][maze.getWidth()];
         Stack<Coordinate> stack = new Stack<>();
-        Coordinate current = start;
+        stack.push(start);
 
-        while (true) {
+        while (!stack.isEmpty()) {
+            Coordinate current = stack.pop();
+
+            if (visited[current.row()][current.col()]) {
+                continue;
+            }
+
             visited[current.row()][current.col()] = true;
             path.add(current);
 
@@ -28,18 +35,14 @@ public class DepthFirstSolver implements Solver {
 
             for (Coordinate neighbor : neighbors) {
                 if (!visited[neighbor.row()][neighbor.col()]) {
-                    stack.push(current);
-                    current = neighbor;
+                    stack.push(neighbor);
                     foundUnvisitedNeighbor = true;
                     break;
                 }
             }
 
             if (!foundUnvisitedNeighbor) {
-                if (stack.isEmpty()) {
-                    break; // Нет пути
-                }
-                current = stack.pop();
+                return Collections.emptyList();
             }
         }
 

@@ -25,5 +25,6 @@ public class Main {
 //        Path originalPilePath = Paths.get("F:\\Tinkoff2\\src\\main\\java\\edu\\hm6\\" +
 //            "\\Tinkoff Bank Biggest Secret.txt");
 //        Task2.cloneFile(originalPilePath);
+        Task6.scanPorts();
     }
 }

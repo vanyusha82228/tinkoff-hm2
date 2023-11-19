@@ -12,6 +12,9 @@ import java.util.zip.CRC32;
 import java.util.zip.CheckedOutputStream;
 
 public class Task4 {
+    private Task4() {
+    }
+
     public static void createAndWriteToFile(String filePath, String text) throws IOException {
         Path outputPath = Path.of(filePath);
 

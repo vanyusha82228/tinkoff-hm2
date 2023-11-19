@@ -6,10 +6,13 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class HackerNews {
     private static final String HACKER_NEWS_API_URL = "https://hacker-news.firebaseio.com/v0/topstories.json";
     private static final String NEWS_ITEM_URL_FORMAT = "https://hacker-news.firebaseio.com/v0/item/%d.json";
+    private static final int HTTP_OK_STATUS_CODE = 200;
 
     public long[] hackerNewsTopStories() {
         HttpClient client = HttpClient.newHttpClient();
@@ -20,7 +23,7 @@ public class HackerNews {
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            if (response.statusCode() == 200) {
+            if (response.statusCode() == HTTP_OK_STATUS_CODE) {
                 String[] ids = response.body().replaceAll("\\[|\\]", "").split(",");
                 long[] topStories = new long[ids.length];
                 for (int i = 0; i < ids.length; i++) {
@@ -29,7 +32,7 @@ public class HackerNews {
                 return topStories;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
 
         return new long[0];
@@ -46,8 +49,7 @@ public class HackerNews {
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            if (response.statusCode() == 200) {
-                // Используем регулярное выражение для извлечения названия новости
+            if (response.statusCode() == HTTP_OK_STATUS_CODE) {
                 Pattern pattern = Pattern.compile("\"title\":\"(.*?)\"");
                 Matcher matcher = pattern.matcher(response.body());
                 if (matcher.find()) {
@@ -55,7 +57,7 @@ public class HackerNews {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
 
         return "News not found";

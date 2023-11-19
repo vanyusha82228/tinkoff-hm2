@@ -18,6 +18,7 @@ public class MarkdownReportGenerator implements ReportGenerator {
     private static final int ERROR_200 = 200;
     private static final int ERROR_404 = 404;
     private static final int ERROR_500 = 500;
+    private static final String TABLE_ROW_SEPARATOR = " | \n";
 
     private String getFormattedDate(List<LogEntry> logEntries, boolean isStartDate) {
 
@@ -41,8 +42,10 @@ public class MarkdownReportGenerator implements ReportGenerator {
             writer.write("|        Метрика        |     Значение | \n");
             writer.write("|:---------------------:|-------------:| \n");
             writer.write("|       Файл(-ы)        | `access.log` | \n");
-            writer.write("|    Начальная дата     |   " + getFormattedDate(logEntries, true) + " | \n");
-            writer.write("|     Конечная дата     |   " + getFormattedDate(logEntries, false) + " | \n");
+            writer.write("|    Начальная дата     |   " + getFormattedDate(logEntries, true)
+                + TABLE_ROW_SEPARATOR);
+            writer.write("|     Конечная дата     |   " + getFormattedDate(logEntries, false)
+                + TABLE_ROW_SEPARATOR);
             writer.write("|  Количество запросов  |       " + logEntries.size() + " |\n");
             writer.write("| Средний размер ответа |       " + calculateAverageResponseSize(logEntries) + "b | \n\n");
 

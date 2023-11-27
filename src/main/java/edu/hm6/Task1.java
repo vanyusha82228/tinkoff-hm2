@@ -16,6 +16,7 @@ import org.jetbrains.annotations.Nullable;
 @Log4j2
 public class Task1 implements Map<String, String> {
 
+    private static final String FILE_ENTRY_SEPARATOR = ":";
     private String filePath;
     private Map<String, String> inMemoryMap;
 
@@ -30,7 +31,7 @@ public class Task1 implements Map<String, String> {
             if (inMemoryMap.isEmpty()) {
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    String[] parts = line.split(":");
+                    String[] parts = line.split(FILE_ENTRY_SEPARATOR);
                     if (parts.length == 2) {
                         inMemoryMap.put(parts[0], parts[1]);
                     }
@@ -44,7 +45,7 @@ public class Task1 implements Map<String, String> {
     private void saveToDisk() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Map.Entry<String, String> entry : inMemoryMap.entrySet()) {
-                writer.write(entry.getKey() + ":" + entry.getValue());
+                writer.write(entry.getKey() + FILE_ENTRY_SEPARATOR + entry.getValue());
                 writer.newLine();
             }
         } catch (IOException e) {

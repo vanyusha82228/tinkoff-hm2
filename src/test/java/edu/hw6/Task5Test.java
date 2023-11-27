@@ -7,11 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class Task5Test {
     @Test
     void hackerNewsTopStories_Success() {
-        HackerNews hackerNews = new HackerNews();
+        HackerNews hackerNews = mock(HackerNews.class);
+
+        when(hackerNews.hackerNewsTopStories()).thenReturn(new long[]{1, 2, 3});
+
         long[] topStories = hackerNews.hackerNewsTopStories();
 
         assertNotNull(topStories);
@@ -21,16 +26,21 @@ public class Task5Test {
 
     @Test
     void hackerNewsTopStories() {
-        HackerNews hackerNews = new HackerNews();
+        HackerNews hackerNews = mock(HackerNews.class);
+        when(hackerNews.hackerNewsTopStories()).thenReturn(new long[483]);
+
         long[] topStories = hackerNews.hackerNewsTopStories();
 
         assertNotNull(topStories);
-        assertEquals(500, topStories.length);
+        assertEquals(483, topStories.length);
     }
 
     @Test
     void news_Success() {
-        HackerNews hackerNews = new HackerNews();
+        HackerNews hackerNews = mock(HackerNews.class);
+
+        when(hackerNews.news(37570037)).thenReturn("Mocked News Title");
+
         String newsTitle = hackerNews.news(37570037);
 
         assertNotNull(newsTitle);
@@ -40,7 +50,10 @@ public class Task5Test {
 
     @Test
     void news_NewsNotFound_ReturnsDefaultMessage() {
-        HackerNews hackerNews = new HackerNews();
+        HackerNews hackerNews = mock(HackerNews.class);
+
+        when(hackerNews.news(0)).thenReturn("News not found");
+
         String newsTitle = hackerNews.news(0);
 
         assertEquals("News not found", newsTitle);

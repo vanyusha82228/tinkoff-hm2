@@ -13,9 +13,13 @@ public class HackerNews {
     private static final String HACKER_NEWS_API_URL = "https://hacker-news.firebaseio.com/v0/topstories.json";
     private static final String NEWS_ITEM_URL_FORMAT = "https://hacker-news.firebaseio.com/v0/item/%d.json";
     private static final int HTTP_OK_STATUS_CODE = 200;
+    private final HttpClient client;
+
+    public HackerNews() {
+        this.client = HttpClient.newHttpClient();
+    }
 
     public long[] hackerNewsTopStories() {
-        HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(HACKER_NEWS_API_URL))
             .build();
@@ -41,7 +45,6 @@ public class HackerNews {
     public String news(long id) {
         String newsItemUrl = String.format(NEWS_ITEM_URL_FORMAT, id);
 
-        HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(newsItemUrl))
             .build();
@@ -62,5 +65,9 @@ public class HackerNews {
 
         return "News not found";
 
+    }
+
+    public void closeHttpClient() {
+        client.close();
     }
 }

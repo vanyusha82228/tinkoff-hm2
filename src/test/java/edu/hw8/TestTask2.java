@@ -3,9 +3,10 @@ package edu.hw8;
 import edu.hm8.task2.FibonacciTask;
 import edu.hm8.task2.FixedThreadPool;
 import edu.hm8.task2.ThreadPool;
-import org.junit.Test;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestTask2 {

@@ -3,21 +3,21 @@ package edu.hw8;
 import edu.hm8.task2.FibonacciTask;
 import edu.hm8.task2.FixedThreadPool;
 import edu.hm8.task2.ThreadPool;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestTask2 {
     private ThreadPool threadPool;
 
-    @Before
+    @BeforeAll
     public void setUp() {
         threadPool = FixedThreadPool.create(2);
         threadPool.start();
     }
 
-    @After
+    @AfterAll
     public void tearDown() throws Exception {
         threadPool.close();
     }

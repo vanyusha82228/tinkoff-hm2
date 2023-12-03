@@ -10,12 +10,6 @@ public class Main {
     public static void main(String[] args) {
         new Thread(Task1::startServer).start();
 
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            log.error(e.getMessage());
-//        }
-
         new Thread(QuoteClient::startClient).start();
         new Thread(QuoteClient::startClient).start();
         new Thread(QuoteClient::startClient).start();

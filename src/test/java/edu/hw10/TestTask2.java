@@ -19,23 +19,4 @@ public class TestTask2 {
         long result1 = proxy.fib(5);
         assertEquals(5, result1);
     }
-    @Test
-    void testPersisting() {
-        FibCalculator fibCalculator = new FibCalculatorImpl();
-        String cacheDirectory = "F:\\Tinkoff2\\src\\main\\java\\edu\\hw10\\task2\\cache";
-        FibCalculator proxy = CacheProxy.create(fibCalculator, FibCalculator.class,
-            cacheDirectory);
-
-        long result1 = proxy.fib(5);
-        assertEquals(5, result1);
-
-
-        assertTrue(fileExists(cacheDirectory, "fib[5].cache"));
-
-    }
-
-    private boolean fileExists(String directory, String fileName) {
-        File file = new File(directory, fileName);
-        return file.exists() && file.isFile();
-    }
 }

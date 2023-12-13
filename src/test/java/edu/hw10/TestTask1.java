@@ -30,7 +30,7 @@ public class TestTask1 {
     @Test
     public void testObjectCreationForMyRecord() throws Exception {
         RandomObjectGenerator rog = new RandomObjectGenerator();
-        
+
         MyRecord myRecord = rog.nextObject(MyRecord.class, null);
 
         assertNotNull(myRecord);

@@ -21,8 +21,10 @@ public class Task1 {
     private static final int PORT = 5555;
 
     public static void startServer() {
-        ExecutorService executorService = Executors.newFixedThreadPool(MAX_CONNECTION);
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+
+        try (
+            ExecutorService executorService = Executors.newFixedThreadPool(MAX_CONNECTION);
+            ServerSocket serverSocket = new ServerSocket(PORT)) {
             log.info("Сервер запущен. Ожидание соединений...");
             while (true) {
                 Socket clientSocket = serverSocket.accept();
@@ -30,8 +32,6 @@ public class Task1 {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
-        } finally {
-            executorService.shutdown();
         }
     }
 

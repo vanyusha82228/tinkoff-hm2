@@ -1,5 +1,7 @@
 package edu.hw9.task1;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import lombok.extern.log4j.Log4j2;
@@ -21,7 +23,10 @@ public class Main {
         for (int i = 0; i < NUM_TASKS; i++) {
             final int index = i;
             executorService.submit(() -> {
-                double[] values = {Math.random(), Math.random(), Math.random()};
+                List<Double> values = new ArrayList<>();
+                values.add(Math.random());
+                values.add(Math.random());
+                values.add(Math.random());
                 collector.push("metric_" + index, values);
             });
         }

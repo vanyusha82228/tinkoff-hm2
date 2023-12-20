@@ -3,6 +3,7 @@ package edu.hw9;
 import edu.hw9.task1.MetricStats;
 import edu.hw9.task1.StatsCollector;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -10,10 +11,12 @@ public class TestTask1 {
     @Test
     void testStatsCollector() {
         StatsCollector collector = new StatsCollector();
+        List<Double> values1 = List.of(1.0, 2.0, 3.0);
+        List<Double> values2 = List.of(0.5, 1.5, 2.5);
 
         // Пушим данные в коллектор
-        collector.push("metric1", new double[]{1.0, 2.0, 3.0});
-        collector.push("metric2", new double[]{0.5, 1.5, 2.5});
+        collector.push("metric1", values1);
+        collector.push("metric2", values2);
 
         // Получаем статистику
         for (MetricStats metricStats : collector.stats()) {

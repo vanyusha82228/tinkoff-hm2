@@ -1,25 +1,27 @@
 package edu.hw9.task1;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class StatsCollector {
-    private Map<String, List<Double>> data;
+    private ConcurrentMap<String, List<Double>> data;
 
     public StatsCollector() {
-        this.data = new HashMap<>();
+        this.data = new ConcurrentHashMap<>();
     }
 
-    public synchronized void push(String metricName, double[] values) {
-        if (!data.containsKey(metricName)) {
-            data.put(metricName, new ArrayList<>());
-        }
-
-        for (double value : values) {
-            data.get(metricName).add(value);
-        }
+    public void push(String metricName, List<Double> values) {
+        data.compute(metricName, (key, existingValues) -> {
+            if (existingValues == null) {
+                return new CopyOnWriteArrayList<>(values);
+            }
+            existingValues.addAll(values);
+            return existingValues;
+        });
     }
 
     public synchronized List<MetricStats> stats() {

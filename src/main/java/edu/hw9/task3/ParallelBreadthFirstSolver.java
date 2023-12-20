@@ -4,11 +4,10 @@ import edu.project2.render.Cell;
 import edu.project2.render.Coordinate;
 import edu.project2.render.Maze;
 import edu.project2.solver.Solver;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -24,15 +23,15 @@ public class ParallelBreadthFirstSolver implements Solver {
 
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
-        List<Coordinate> path = new ArrayList<>();
+        List<Coordinate> path = new CopyOnWriteArrayList<>();  // Используем потокобезопасный список
         boolean[][] visited = new boolean[maze.getHeight()][maze.getWidth()];
-        Queue<Coordinate> queue = new LinkedList<>();
+        ConcurrentLinkedQueue<Coordinate> queue = new ConcurrentLinkedQueue<>();  // Используем потокобезопасную очередь
         queue.add(start);
 
         Coordinate[][] predecessors = new Coordinate[maze.getHeight()][maze.getWidth()];
 
         while (!queue.isEmpty()) {
-            List<Future<List<Coordinate>>> futures = new ArrayList<>();
+            List<Future<Void>> futures = new CopyOnWriteArrayList<>();
 
             while (!queue.isEmpty()) {
                 Coordinate current = queue.poll();
@@ -53,7 +52,7 @@ public class ParallelBreadthFirstSolver implements Solver {
             }
 
             // Дождемся завершения всех потоков перед продолжением
-            for (Future<List<Coordinate>> future : futures) {
+            for (Future<Void> future : futures) {
                 try {
                     future.get();
                 } catch (Exception e) {
@@ -74,7 +73,7 @@ public class ParallelBreadthFirstSolver implements Solver {
     }
 
     private List<Coordinate> getNeighbors(Maze maze, Coordinate current) {
-        List<Coordinate> neighbors = new ArrayList<>();
+        List<Coordinate> neighbors = new CopyOnWriteArrayList<>();  // Используем потокобезопасный список
         int row = current.row();
         int col = current.col();
         int height = maze.getHeight();

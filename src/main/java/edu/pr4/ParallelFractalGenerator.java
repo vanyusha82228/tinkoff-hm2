@@ -38,14 +38,13 @@ public class ParallelFractalGenerator {
         this.gamma = gamma;
     }
 
-    public  FractalImage renderParallel(
+    public FractalImage renderParallel(
     ) {
         FractalImage fractalImage = FractalImage.create(xRes, yRes);
         Transformation[] transformations = generateTransformations(eqCount, symmetries);
 
-        ExecutorService executorService = Executors.newFixedThreadPool(numThreads);
+        try (ExecutorService executorService = Executors.newFixedThreadPool(numThreads)) {
 
-        try {
             for (int num = 0; num < n; num++) {
                 double newX = getRandom(XMIN, XMAX);
                 double newY = getRandom(YMIN, YMAX);
@@ -68,8 +67,7 @@ public class ParallelFractalGenerator {
                     }
                 }
             }
-        } finally {
-            executorService.shutdown();
+
         }
 
         return fractalImage;

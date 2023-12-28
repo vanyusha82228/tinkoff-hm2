@@ -1,5 +1,9 @@
 package edu.hw10.task1;
 
+import edu.hw10.task1.annotation.Max;
+import edu.hw10.task1.annotation.Min;
+import edu.hw10.task1.annotation.NotNull;
+
 public class MyClass {
     @NotNull
     private String name;
